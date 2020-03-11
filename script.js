@@ -38,17 +38,17 @@ video.addEventListener('play', () => {
     document.body.append(canvas)
     const displayDimensions = { width: video.width, height: video.height }
     faceapi.matchDimensions(canvas, displayDimensions)
-    // setInterval method continuously calls the function at 100 millisecond intervals
+    // setInterval method continuously calls the async function at 100 millisecond intervals
     setInterval(async () => {
       const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
       const resizedDetections = faceapi.resizeResults(detections, displayDimensions)
       canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-      faceapi.draw.drawDetections(canvas, resizedDetections)
       faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+      faceapi.draw.drawDetections(canvas, resizedDetections)
       faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
     //   console.log("detections = ", detections)
     }, 100)
   })
 
-  
+
 // startVideo();
