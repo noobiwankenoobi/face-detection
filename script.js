@@ -26,7 +26,11 @@ Promise.all([
 
 
 
-console.log("faceapi.nets= ", faceapi.nets)
+// console.log("faceapi.nets= ", faceapi.nets)
+
+// const clearAndDrawCanvas = () => {
+
+// }
 
 
 video.addEventListener('play', () => {
@@ -34,6 +38,7 @@ video.addEventListener('play', () => {
     document.body.append(canvas)
     const displayDimensions = { width: video.width, height: video.height }
     faceapi.matchDimensions(canvas, displayDimensions)
+    // setInterval method continuously calls the function at 100 millisecond intervals
     setInterval(async () => {
       const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
       const resizedDetections = faceapi.resizeResults(detections, displayDimensions)
@@ -45,4 +50,5 @@ video.addEventListener('play', () => {
     }, 100)
   })
 
+  
 // startVideo();
