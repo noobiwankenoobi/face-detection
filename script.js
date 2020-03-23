@@ -34,14 +34,14 @@ Promise.all([
 
 
 video.addEventListener('play', () => {
-    const canvas = faceapi.createCanvasFromMedia(video)
+    let canvas = faceapi.createCanvasFromMedia(video)
     document.body.append(canvas)
-    const displayDimensions = { width: video.width, height: video.height }
+    let displayDimensions = { width: video.width, height: video.height }
     faceapi.matchDimensions(canvas, displayDimensions)
-    // setInterval method continuously calls the async function at 100 millisecond intervals
+    // setInterval method continuously calls the function at 100 millisecond intervals
     setInterval(async () => {
-      const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-      const resizedDetections = faceapi.resizeResults(detections, displayDimensions)
+      let detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+      let resizedDetections = faceapi.resizeResults(detections, displayDimensions)
     //   clears the canvas before drawing onto it
       canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
     //   draws the resized detections onto canvas the detec
